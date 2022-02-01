@@ -26,6 +26,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout',[AuthController::class,'logout']);
 });
 
+Route::middleware('auth:sanctum','isApiAdmin')->group(function () {
+    Route::get('checkAuth', function () {
+        return response()->json([
+            'message' => 'you are in',
+            'status' => 200
+        ],200);
+    });
+});
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

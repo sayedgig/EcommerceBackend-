@@ -82,10 +82,17 @@ class AuthController extends Controller
                     'status' => 401,
                 ]);
             }
-
+      
             $user = User::where('email', $request['email'])->firstOrFail();
+            if ($user->role_as ==1){
+                $role ='admin';
+                $token = $user->createToken('admin_token',['server:admin'])->plainTextToken;
 
-            $token = $user->createToken('auth_token')->plainTextToken;
+            }else{
+                $role ='';
+                $token = $user->createToken('auth_token',[''])->plainTextToken;
+            }
+           
 
             return response()->json([
                 'access_token' => $token,
@@ -93,6 +100,7 @@ class AuthController extends Controller
                 'message' => "User logged in successfully",
                 'status' => 200,
                 'userName' =>$user->name ,
+                'role'=>$role,
             ]);
         }
 
