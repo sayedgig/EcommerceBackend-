@@ -18,7 +18,7 @@ class ApiAdminMiddleware
     public function handle(Request $request, Closure $next)
     {
         if(Auth::check()){
-            if(auth()->user()->tokenCan('server:admin')){
+            if(Auth::user()->tokenCan('server:admin')){
                 return $next($request);
             }else{
                 return response()->json([

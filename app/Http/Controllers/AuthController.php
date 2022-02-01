@@ -18,6 +18,28 @@ class AuthController extends Controller
 
     ]);
     }
+
+    public function isApiAdmin(){
+        if(Auth::check()){
+            if(Auth::user()->role_as==1){
+                return response()->json([
+                    'message' => 'you are in',
+                    'status' => 200
+                ],200);
+            }else{
+                return response()->json([
+                    'status' =>403,
+                    'message' =>'you are not system admin'
+                ]);
+            }
+
+        }else{
+            return response()->json([
+                'status' =>401,
+                'message' =>'you are not loggin'
+            ]);
+        }
+    }
     public function register(Request $request)
     {
         // $validatedData = $request->validate([
@@ -100,7 +122,7 @@ class AuthController extends Controller
                 'message' => "User logged in successfully",
                 'status' => 200,
                 'userName' =>$user->name ,
-                'role'=>$role,
+                'adminRole'=>$role,
             ]);
         }
 
