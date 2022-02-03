@@ -9,6 +9,17 @@ use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
+
+    function index(){
+        $category = Category::all();
+      
+        return response()->json([
+            'status'=>200,
+            'category'=>$category,
+        ]);
+
+
+    }
     
 
     function store(Request $request){
