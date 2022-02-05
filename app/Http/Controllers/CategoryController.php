@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\Validator;
 class CategoryController extends Controller
 {
 
+    function allCategory(){
+        $category = Category::where('status','0')->get();
+      
+        return response()->json([
+            'status'=>200,
+            'category'=>$category,
+        ]);
+    }
     function destroy($id){
         $category = Category::find($id);
         if($category){

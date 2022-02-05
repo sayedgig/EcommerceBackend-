@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,12 +28,16 @@ Route::middleware('auth:sanctum')->get('/book', [BookController::class,'index'])
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout',[AuthController::class,'logout']);
     Route::get('checkAuth',[AuthController::class,'isApiAdmin']);
-
+   //Category
     Route::post('store-category',[CategoryController::class,'store']);
     Route::get('view-category',[CategoryController::class,'index']);
     Route::get('edit-category/{id}',[CategoryController::class,'edit']);
     Route::put('update-category/{id}',[CategoryController::class,'update']);
     Route::delete('delete-category/{id}',[CategoryController::class,'destroy']);
+    //product 
+    Route::get('all-category',[CategoryController::class,'allCategory']);
+    Route::post('store-product',[ProductController::class,'store']);
+
 });
 
 // Route::middleware('auth:sanctum','isApiAdmin')->group(function () {
