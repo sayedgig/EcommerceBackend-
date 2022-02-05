@@ -10,6 +10,23 @@ use Illuminate\Support\Facades\Validator;
 class CategoryController extends Controller
 {
 
+    function destroy($id){
+        $category = Category::find($id);
+        if($category){
+            $category->delete();
+            return response()->json([
+                'status'=>200,
+                'message'=>'category deleted sucessfully'
+            ]);
+            }else{
+                return response()->json([
+                    'status'=>404,
+                    'message'=>'no category is found'
+                ]);   
+            }
+
+    }
+
     function update(Request $request , $id){
 
         $validator = Validator::make($request->all(),[
