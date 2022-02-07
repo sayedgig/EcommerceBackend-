@@ -25,6 +25,11 @@ Route::post('login',[AuthController::class,'login']);
 
 Route::middleware('auth:sanctum')->get('/book', [BookController::class,'index']);
 
+Route::post('store-product',[ProductController::class,'store']);
+Route::get('all-category',[CategoryController::class,'allCategory']);
+Route::get('view-product',[ProductController::class,'index']);
+
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout',[AuthController::class,'logout']);
     Route::get('checkAuth',[AuthController::class,'isApiAdmin']);
@@ -35,9 +40,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('update-category/{id}',[CategoryController::class,'update']);
     Route::delete('delete-category/{id}',[CategoryController::class,'destroy']);
     //product 
-    Route::get('all-category',[CategoryController::class,'allCategory']);
-    Route::post('store-product',[ProductController::class,'store']);
-
+   
+    
 });
 
 // Route::middleware('auth:sanctum','isApiAdmin')->group(function () {

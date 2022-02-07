@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->integer('category_id');
             $table->string('slug');
             $table->string('name');
-            $table->longText('desscription')->nullable();
+            $table->longText('description')->nullable();
 
             $table->string('meta_title')->nullable();
             $table->string('meta_keyword')->nullable();
@@ -26,7 +26,7 @@ class CreateProductsTable extends Migration
 
             $table->string('selling_price');
             $table->string('original_price');
-            $table->string('meta_quantity');
+            $table->string('quantity');
             $table->string('brand');
             $table->string('image');
             $table->tinyInteger('feature')->defaultValue('0')->nullable();
