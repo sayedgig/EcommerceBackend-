@@ -14,4 +14,10 @@ class Product extends Model
         ,'meta_keyword','meta_description','selling_price','original_price','quantity'
         ,'brand','image','feature','popular','status'
     ];
+
+    protected $with =['category'];
+
+    public function category(){
+        return $this->belongsTo(Category::class,'category_id','id');
+    }
 }
