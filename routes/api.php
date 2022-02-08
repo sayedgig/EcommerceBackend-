@@ -28,7 +28,8 @@ Route::middleware('auth:sanctum')->get('/book', [BookController::class,'index'])
 Route::post('store-product',[ProductController::class,'store']);
 Route::get('all-category',[CategoryController::class,'allCategory']);
 Route::get('view-product',[ProductController::class,'index']);
-
+Route::get('edit-product/{id}',[ProductController::class,'edit']);
+Route::put('update-product/{id}',[ProductController::class,'update']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout',[AuthController::class,'logout']);
