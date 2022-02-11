@@ -6,6 +6,7 @@ use  App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\FrontendController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,9 +32,17 @@ Route::get('view-product',[ProductController::class,'index']);
 Route::get('edit-product/{id}',[ProductController::class,'edit']);
 Route::put('update-product/{id}',[ProductController::class,'update']);
 
+//frontend
+Route::get('get-category',[FrontendController::class,'category']);
+Route::get('fetch-products/{slug}',[FrontendController::class,'product']);
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout',[AuthController::class,'logout']);
     Route::get('checkAuth',[AuthController::class,'isApiAdmin']);
+
+
+
+
    //Category
     Route::post('store-category',[CategoryController::class,'store']);
     Route::get('view-category',[CategoryController::class,'index']);
