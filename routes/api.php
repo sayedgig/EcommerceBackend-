@@ -35,6 +35,7 @@ Route::put('update-product/{id}',[ProductController::class,'update']);
 //frontend
 Route::get('get-category',[FrontendController::class,'category']);
 Route::get('fetch-products/{slug}',[FrontendController::class,'product']);
+Route::get('view-product-details/{category_slug}/{product_slug}',[FrontendController::class,'viewProduct']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout',[AuthController::class,'logout']);
