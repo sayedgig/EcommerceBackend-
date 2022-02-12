@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\BookController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FrontendController;
@@ -36,6 +37,8 @@ Route::put('update-product/{id}',[ProductController::class,'update']);
 Route::get('get-category',[FrontendController::class,'category']);
 Route::get('fetch-products/{slug}',[FrontendController::class,'product']);
 Route::get('view-product-details/{category_slug}/{product_slug}',[FrontendController::class,'viewProduct']);
+
+Route::post('add-to-cart',[CartController::class,'addtocart']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout',[AuthController::class,'logout']);
