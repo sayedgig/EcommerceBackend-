@@ -41,6 +41,8 @@ Route::get('view-product-details/{category_slug}/{product_slug}',[FrontendContro
 Route::post('add-to-cart',[CartController::class,'addtocart']);
 Route::get('cart',[CartController::class,'viewcart']);
 Route::put('update-quantity/{cart_id}/{scope}',[CartController::class,'updatequantity']);
+Route::delete('delete-cartitem/{cart_id}',[CartController::class,'deletecarditem']);
+
 
 
 Route::middleware('auth:sanctum')->group(function () {
