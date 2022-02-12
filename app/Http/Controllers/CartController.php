@@ -8,6 +8,43 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+
+    public function updatequantity($cart_id,$scope){
+        if(auth('sanctum')->check()){
+            $user_id = auth('sanctum')->user()->id;
+            $cart = Cart::where('user_id',$user_id )->where('id',$cart_id)->first();
+            if($cart){
+                if ($scope==="dec"){
+                    $cart->product_qty -= 1;
+
+                }else  if ($scope==="inc"){
+                    $cart->product_qty +=1;
+
+                }
+                
+                $cart->update();
+                return response()->json([
+                    'status'=>200,
+                    'message'=>'qantity is updated' 
+                ]);  
+    
+
+            }else{
+                return response()->json([
+                    'status'=>404,
+                    'message'=>'cart id not found'
+                ]);
+            }
+           
+        }else{
+            return response()->json([
+                'status'=>401,
+                'message'=>'login add to cart'
+            ]);
+        }
+       
+
+    }
     public function viewcart(){
         if(auth('sanctum')->check()){
             $user_id = auth('sanctum')->user()->id;
