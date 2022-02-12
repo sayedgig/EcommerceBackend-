@@ -8,6 +8,24 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+    public function viewcart(){
+        if(auth('sanctum')->check()){
+            $user_id = auth('sanctum')->user()->id;
+            $cart = Cart::where('user_id',$user_id )->get();
+
+            return response()->json([
+                'status'=>200,
+                'cart'=>$cart 
+            ]);  
+
+        }else{
+            return response()->json([
+                'status'=>401,
+                'message'=>'login add to cart'
+            ]);
+        }
+       
+    }
     public function addtocart(Request $request){
 
         if(auth('sanctum')->check()){

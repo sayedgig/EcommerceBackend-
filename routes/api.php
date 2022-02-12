@@ -39,6 +39,7 @@ Route::get('fetch-products/{slug}',[FrontendController::class,'product']);
 Route::get('view-product-details/{category_slug}/{product_slug}',[FrontendController::class,'viewProduct']);
 
 Route::post('add-to-cart',[CartController::class,'addtocart']);
+Route::get('cart',[CartController::class,'viewcart']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout',[AuthController::class,'logout']);

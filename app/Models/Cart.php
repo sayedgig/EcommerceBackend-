@@ -4,10 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Cart extends Model
 {
     use HasFactory;
     protected $table="carts";
-    protected $filled =['user_id','producr_id','product_qty'];
+    protected $filled =['user_id','product_id','product_qty'];
+
+    protected $with=['product'];
+    public function product(){
+       return  $this->belongsTo(Product::class,'product_id','id');
+    }
 }
