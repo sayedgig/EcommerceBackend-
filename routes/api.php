@@ -8,6 +8,8 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\CheckoutController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +45,8 @@ Route::get('cart',[CartController::class,'viewcart']);
 Route::put('update-quantity/{cart_id}/{scope}',[CartController::class,'updatequantity']);
 Route::delete('delete-cartitem/{cart_id}',[CartController::class,'deletecarditem']);
 
+
+Route::post('place-order',[CheckoutController::class,'placeorder']);
 
 
 Route::middleware('auth:sanctum')->group(function () {
